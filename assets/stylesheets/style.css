@@ -1,0 +1,24 @@
+
+  @font-face {
+    font-family: "myFont";
+    src: url("/font/PixelMplus12-Regular.eot?") format('eot'),
+         url("/font/PixelMplus12-Regular.woff") format('woff');
+  }
+  body {
+    font-family: "myFont";
+}
+
+#textarea{
+  font-family: "myFont";
+
+}
+
+input {
+  font-family: "myFont";
+
+}
+
+button {
+  font-family: "myFont";
+
+}

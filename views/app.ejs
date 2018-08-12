@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="stylesheets/style.css">
+  <title>Document</title>
+</head>
+<body>
+  <form action="/tweet" method="POST">
+    <input type="text" name="content">
+    <button>post</button>
+  </form>
+  
+
+
+  <% if(tweets){ %>
+  <%  tweets.forEach(function(tweet){ %>
+<%= tweet.content %>
+  <% })} %>
+
+
+
+</body>
+</html>
