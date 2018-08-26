@@ -1,26 +1,46 @@
 <!DOCTYPE html>
-<html lang="jp">
+<html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="stylesheets/style.css">
+  <script src=http://localhost:8000/js/jquery-3.3.1.min.js></script>
   <title>Document</title>
 </head>
 <body>
-  <form action="/tweet" method="POST">
-    <input type="text" name="content">
-    <button>post</button>
+  <form action="/" method="POST">
+    <input type="text" name="content" id="content" autocomplete="off">
+    <button>はなす</button>
   </form>
   
+<div>
+  <% if(tweets){ %> 
+    <%  tweets.forEach(function(tweet){ %>
+ <p> <%= tweet.content %></p> 
+    <% })} %>
+</div>
+
+ 
 
 
-  <% if(tweets){ %>
-  <%  tweets.forEach(function(tweet){ %>
-<%= tweet.content %>
-  <% })} %>
+<script> // input が空欄の時は送信したくない
+  const v =    $("#content").val()
 
+  $("button").click(function (event) {
+  event.preventDefault()
+  $.ajax({
+    url: "/",
+    type: "POST",
+    data: $("#content").serialize(),
+    datType: "json",
+    success: function (res) {
+        const namedata = res.content
+       $("div").prepend("<p>" + namedata + "</p>")
+      console.log(res)
+   $("#content").val("")
+        }
+      })
 
+    })
 
+</script>
 </body>
 </html>

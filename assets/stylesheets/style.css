@@ -4,21 +4,29 @@
     src: url("/font/PixelMplus12-Regular.eot?") format('eot'),
          url("/font/PixelMplus12-Regular.woff") format('woff');
   }
-  body {
+  body, input, button{
     font-family: "myFont";
+    font-size: 20px;
+    color:white;
+    background-color: black;
 }
 
-#textarea{
-  font-family: "myFont";
-
-}
 
 input {
-  font-family: "myFont";
-
+  font-size: 20px;
+  width: 300px;
+  height:30px;
 }
 
-button {
-  font-family: "myFont";
+input:focus{
+  outline: 5px ridge white;
+}
 
+
+button {
+  outline: none;
+}
+
+li {
+  list-style: none;
 }
