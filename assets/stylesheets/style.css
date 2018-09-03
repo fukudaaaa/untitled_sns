@@ -1,14 +1,15 @@
 
-  @font-face {
+@font-face {
     font-family: "myFont";
     src: url("/font/PixelMplus12-Regular.eot?") format('eot'),
          url("/font/PixelMplus12-Regular.woff") format('woff');
   }
-  body, input, button{
-    font-family: "myFont";
-    font-size: 20px;
-    color:white;
-    background-color: black;
+
+body, input, button{
+  font-family: "myFont";
+  font-size: 20px;
+  color:white;
+  background-color: black;
 }
 
 
@@ -29,4 +30,23 @@ button {
 
 li {
   list-style: none;
+}
+
+.dashboard{
+  float:right;
+  height:100px;
+  width:100px;
+  border: 3px solid white;
+}
+
+.content{
+  text-align: center
+}
+
+.contentboard{
+  padding:10px;
+  margin: 6px;
+  height:100px;
+  width:500px;
+  border: 3px solid white;
 }

@@ -6,41 +6,41 @@
   <title>Document</title>
 </head>
 <body>
+
   <form action="/" method="POST">
     <input type="text" name="content" id="content" autocomplete="off">
     <button>はなす</button>
   </form>
-  
 <div>
   <% if(tweets){ %> 
     <%  tweets.forEach(function(tweet){ %>
- <p> <%= tweet.content %></p> 
-    <% })} %>
+      <p> <%= tweet.author.username%><br><%= tweet.content %></p> 
+    <% }) %>
+  <% } %>
 </div>
 
- 
-
+<h6><a href="/logout">LOGOUT</a></h6>
 
 <script> // input が空欄の時は送信したくない
   const v =    $("#content").val()
 
   $("button").click(function (event) {
-  event.preventDefault()
-  $.ajax({
-    url: "/",
-    type: "POST",
-    data: $("#content").serialize(),
-    datType: "json",
-    success: function (res) {
-        const namedata = res.content
-       $("div").prepend("<p>" + namedata + "</p>")
-      console.log(res)
-   $("#content").val("")
-        }
-      })
-
+    event.preventDefault()
+    $.ajax({
+      url: "/",
+      type: "POST",
+      data: $("#content").serialize(),
+      datType: "json",
+      success: function (res) {
+        const contentdata = res.content
+        const namedata = res.author.username
+        $("div").prepend( "<p>" + namedata + "<br>" + contentdata + "</p>")
+        $("#content").val("")
+        $("p").addClass("contentboard")
+      }
     })
-
+  })
+  $("p").addClass("contentboard")
 </script>
 </body>
 </html>
