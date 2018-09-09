@@ -16,9 +16,9 @@ router.post("/register", function(req, res){
       console.log(err);
       return res.render('register');
     }
-      passport.authenticate("local")(req, res, function(){
-         res.redirect("/");
-      })
+    passport.authenticate("local")(req, res, function(){
+        res.redirect("/");
+    })
   })
 })
 
@@ -29,7 +29,7 @@ router.get("/",isLoggedIn, function(req,res){
       console.log(err)
     } else {
       const reversedTweets = tweets.slice().reverse()
-      res.render("app",{tweets:reversedTweets})  
+      res.render("app",{tweets:reversedTweets})
       }
   })
 })
