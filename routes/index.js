@@ -23,15 +23,10 @@ router.post("/register", function(req, res){
 })
 
 
-router.get("/",isLoggedIn, function(req,res){
-  Tweet.find({},function(err,tweets){
-    if(err){
-      console.log(err)
-    } else {
-      const reversedTweets = tweets.slice().reverse()
-      res.render("app",{tweets:reversedTweets})
-      }
-  })
+router.get("/",isLoggedIn, async function(req,res){
+  const tweets = await Tweet.find({}).limit(20).sort({'tweetedAt': -1})
+  const reversedTweets = tweets.reverse()
+  res.render("app",{tweets:reversedTweets})
 })
 
 router.get("/login",function(req,res){

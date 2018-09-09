@@ -27,7 +27,7 @@ passport.deserializeUser(User.deserializeUser());
 
 const tweetRoutes = require("./routes/tweets")
 const indexRoutes = require("./routes/index")
-const userRoutes   = require("./routes/user")
+const userRoutes  = require("./routes/user")
 
 app.use("/", tweetRoutes)
 app.use("/",indexRoutes)
