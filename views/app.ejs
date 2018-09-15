@@ -6,7 +6,6 @@
   <title>Document</title>
 </head>
 <body>
-
   <form action="/" method="POST">
     <input type="text" name="content" id="content" autocomplete="off">
     <button id="tweet-button">はなす</button>
@@ -15,21 +14,22 @@
   </div>
 <h6><a href="/logout">LOGOUT</a></h6>
 
-<script> // input が空欄の時は送信したくない
+<script> // input が空欄の時は送信したくない  
   const tweets = <%- JSON.stringify(tweets.map(tweet => {
     return {author: {username: tweet.author.username}, content: tweet.content, tweetedAt: tweet.tweetedAt}
-  })) %>
+  })) %> 
   tweets.forEach(createContentBoard)
 
   function createContentBoard(tweet) {
-    const $followButton =$("<button>フォロー</button>").addClass("follow-button")
+    // followbuttonにtweetのauthorの名前をIDとしてつける
+    const $followButton =$("<button>フォロー</button>").addClass("follow-button").attr("id",<%="tweet.author.username" %>)
     $('<p></p>').addClass("contentboard")
-    .append(tweet.author.username)
+    .append("<a href=" + "/user/" + tweet.author.username + ">" +tweet.author.username + "</a>")
     .append('<br>')
     .append(tweet.content)
     .append('<br>')
-    .append($followButton)
-    .append('<br>')
+    // .append($followButton)
+    // .append('<br>')
     .append(tweet.tweetedAt)
     .prependTo($('#tweets-container'))
   }
@@ -47,6 +47,16 @@
       }
     })
   })
+
+$(".follow-button").click(function(req,res){
+  const id = $(this).attr("id")
+  const text = $(this).text()
+  $.ajax({
+    url:"user/:username/follow",
+    type:"POST",
+    data: {id:id}
+   })
+}) 
 </script>
 </body>
 </html>

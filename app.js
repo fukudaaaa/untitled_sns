@@ -6,14 +6,26 @@ const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 const passportLocalMongoose = require("passport-local-mongoose")
 const User = require("./models/user")
+const session = require("express-session")
+const MongoStore   = require("connect-mongo")(session)
+const _ = require("lodash")
+
+
+// const redis   = require("redis")
+// const redisStore = require('connect-redis')(session)
+// const client  = redis.createClient()
+
 
 mongoose.connect("mongodb://localhost:27017/untitled_sns", { useNewUrlParser: true })
 
 app.set("view engine", "ejs")
 app.use(express.static(__dirname + "/assets"))
+
 app.use(bodyParser.urlencoded({extended:true}))
-app.use(require("express-session")({
+app.use(session({
+  store: new MongoStore({ mongooseConnection: mongoose.connection,  ttl: 100000, autoRemove:'native', collection:'AllSessions' }),
   secret: "The cake is lie",
+  // store: new redisStore({ host: 'localhost', port: 8000, client: client,ttl :  10}),
   resave: false,
   saveUninitialized: false
 }));
