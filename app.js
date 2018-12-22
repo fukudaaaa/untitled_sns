@@ -11,12 +11,14 @@ const MongoStore = require('connect-mongo')(session);
 const _ = require('lodash');
 
 const port = process.env.PORT || 8000;
+
+require('dotenv').config();
 // const redis   = require("redis")
 // const redisStore = require('connect-redis')(session)
 // const client  = redis.createClient()
 
 mongoose.connect(
-  MONGODB_URI,
+  process.env.MONGODB_URI,
   { useNewUrlParser: true }
 );
 
