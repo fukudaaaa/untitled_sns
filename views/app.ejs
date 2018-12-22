@@ -1,10 +1,5 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <link rel="stylesheet" href="stylesheets/style.css">
-  <script src=http://localhost:8000/js/jquery-3.3.1.min.js></script>
-  <title>Document</title>
-</head>
+<% include ./partials/header %> 
+
 <body>
   <form action="/" method="POST">
     <input type="text" name="content" id="content" autocomplete="off">
@@ -12,12 +7,13 @@
   </form>
   <div id="tweets-container">
   </div>
-<h6><a href="/logout">LOGOUT</a></h6>
+
 
 <script> // input が空欄の時は送信したくない  
-  const tweets = <%- JSON.stringify(tweets.map(tweet => {
-    return {author: {username: tweet.author.username}, content: tweet.content, tweetedAt: tweet.tweetedAt}
-  })) %> 
+   const tweets = <%- JSON.stringify(tweets.map(tweet => {
+     return {author: {username: tweet.author.username}, content: tweet.content, tweetedAt: tweet.tweetedAt}
+   })) %> 
+   console.log(tweets)
   tweets.forEach(createContentBoard)
 
   function createContentBoard(tweet) {
@@ -27,6 +23,7 @@
     .append("<a href=" + "/user/" + tweet.author.username + ">" +tweet.author.username + "</a>")
     .append('<br>')
     .append(tweet.content)
+    .append('<br>')
     .append('<br>')
     // .append($followButton)
     // .append('<br>')
@@ -57,6 +54,7 @@ $(".follow-button").click(function(req,res){
     data: {id:id}
    })
 }) 
+
 </script>
-</body>
-</html>
+
+<% include ./partials/footer %> 
