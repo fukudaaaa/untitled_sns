@@ -10,6 +10,7 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const _ = require('lodash');
 
+const port = process.env.PORT || 8000;
 // const redis   = require("redis")
 // const redisStore = require('connect-redis')(session)
 // const client  = redis.createClient()
@@ -53,6 +54,6 @@ app.use('/', tweetRoutes);
 app.use('/', indexRoutes);
 app.use('/user', userRoutes);
 
-app.listen(8080 || process.env.PORT, function() {
+app.listen(port, function() {
   console.log('server started');
 });
