@@ -8,6 +8,6 @@ app.get('/', (req, res) => {
   res.end('Hello World\n');
 });
 
-app.listen(8080 || process.env.PORT, function() {
+app.listen(process.env.PORT, function() {
   res.render;
 });
