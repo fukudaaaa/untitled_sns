@@ -15,7 +15,7 @@ const _ = require('lodash');
 // const client  = redis.createClient()
 
 mongoose.connect(
-  'mongodb://localhost:27017/untitled_sns',
+  MONGODB_URI,
   { useNewUrlParser: true }
 );
 
@@ -53,6 +53,6 @@ app.use('/', tweetRoutes);
 app.use('/', indexRoutes);
 app.use('/user', userRoutes);
 
-app.listen(8080, function() {
+app.listen(8080 || process.env.PORT, function() {
   console.log('server started');
 });
